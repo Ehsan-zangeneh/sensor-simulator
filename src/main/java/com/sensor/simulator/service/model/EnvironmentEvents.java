@@ -2,9 +2,7 @@ package com.sensor.simulator.service.model;
 
 import java.security.SecureRandom;
 import java.util.List;
-
 import com.sensor.simulator.common.exception.PhysicalProblemException;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

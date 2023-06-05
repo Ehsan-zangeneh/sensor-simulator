@@ -1,12 +1,6 @@
 package com.sensor.simulator.service;
 
-import java.security.SecureRandom;
-
 import org.springframework.stereotype.Component;
-
-import com.sensor.simulator.common.exception.PhysicalProblemException;
-import com.sensor.simulator.service.model.SensorMessage;
-
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
@@ -14,7 +8,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class EventGenerator {
 
-	SecureRandom r = new SecureRandom();
+	//SecureRandom secureRandom = new SecureRandom();
 	
-
+	/*
+	 * Here goes the logic to generate Events based on a statistics
+	 * 
+	 * */
 }
