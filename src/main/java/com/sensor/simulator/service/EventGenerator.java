@@ -1,17 +1,53 @@
 package com.sensor.simulator.service;
 
+import java.security.SecureRandom;
+import java.util.List;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import com.sensor.simulator.service.model.EnvironmentEvents;
+import com.sensor.simulator.service.model.SensorMessage;
+
 import lombok.AccessLevel;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Component
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@ConfigurationProperties(prefix ="sensor.message")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EventGenerator {
-
-	//SecureRandom secureRandom = new SecureRandom();
 	
-	/*
-	 * Here goes the logic to generate Events based on a statistics
-	 * 
+	static final SecureRandom secureRandom = new SecureRandom();
+	@Setter
+	List<String> metrics;
+
+	public SensorMessage generate() {
+		Condition condition = getCondition();
+		SensorMessage sensorMessage; 
+		switch (condition) {
+		case DANGEROUS ->  sensorMessage = EnvironmentEvents.unsafeOccurrence(List.of(getRandomMetric()));
+		case NORMAL -> sensorMessage = EnvironmentEvents.safeOccurrence();
+		default -> sensorMessage = SensorMessage.builder().build();
+		}
+		return sensorMessage;
+	}
+	
+	private String getRandomMetric( ) {
+		int percent = secureRandom.nextInt(6);
+		return metrics.get(percent % 3);
+	}
+	/**
+	 * About 30 percent of times the condition is risky. 
 	 * */
+	private Condition getCondition() {
+		int percent = secureRandom.nextInt(100);
+		return percent > 30 ? Condition.NORMAL : Condition.DANGEROUS;
+	}
+	
+	private enum Condition {
+		DANGEROUS,
+		NORMAL;
+	} 
+	
+	
 }

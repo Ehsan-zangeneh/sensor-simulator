@@ -2,6 +2,7 @@ package com.sensor.simulator.service.model;
 
 import java.security.SecureRandom;
 import java.util.List;
+
 import com.sensor.simulator.common.exception.PhysicalProblemException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,10 +13,11 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum EnvironmentEvents {
-
+	
 	TEMPERATURE(18.0, 28.0, "temperature"),
 	OXYGEN(300000.0, 400000.0, "oxygen"),
 	LIGHT(1000.0, 25000.0, "light");
+	
 	static SecureRandom random = new SecureRandom();
 	double lowerBound;
 	double upperBound;
