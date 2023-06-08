@@ -1,7 +1,6 @@
 package com.sensor.simulator.service.model;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,13 +11,12 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.internal.progress.ArgumentMatcherStorage;
 
 import com.sensor.simulator.common.exception.PhysicalProblemException;
 
 public class EnvironmentEventsTest {
 	
-//	@RepeatedTest(10)
+	@RepeatedTest(10)
 	public void safeOccurrenceTest() {
 		var message = EnvironmentEvents.safeOccurrence();
 		assertAll("message",
