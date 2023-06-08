@@ -1,0 +1,11 @@
+# all log files
+*.log
+
+.project
+
+.classpath
+
+.settings/
+
+target/
+

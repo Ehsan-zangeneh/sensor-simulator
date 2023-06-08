@@ -4,32 +4,31 @@
   <artifactId>sensor-simulator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <properties>
+    <java.version>17</java.version>
+  </properties>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.1.0</version>
+  </parent>
+  
   <dependencies>
 	<dependency>
 	    <groupId>org.springframework.boot</groupId>
-	    <artifactId>spring-boot-starter-web</artifactId>
-	    <version>3.1.0</version>
+	    <artifactId>spring-boot-starter-web</artifactId>	    
 	</dependency>
 	<dependency>
 	    <groupId>org.projectlombok</groupId>
 	    <artifactId>lombok</artifactId>
-	    <version>1.18.28</version>
 	    <scope>provided</scope>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
 	<dependency>
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-starter-test</artifactId>
-	    <version>3.1.0</version>
 	    <scope>test</scope>
-	</dependency>
-
-<!--	<dependency>
-	    <groupId>org.junit.jupiter</groupId>
-	    <artifactId>junit-jupiter-engine</artifactId>
-	    <version>5.9.2</version>
-	    <scope>test</scope>
-    </dependency>-->	
-   </dependencies>
+	</dependency>	
+   </dependencies>   
   
 </project>
