@@ -5,9 +5,11 @@ import java.util.List;
 import com.sensor.simulator.common.exception.PhysicalProblemException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum EnvironmentEvents {
 
@@ -19,20 +21,29 @@ public enum EnvironmentEvents {
 	double upperBound;
 	String event;
 	
+	/**
+	 * This method creates a normal message. 
+	 * */
 	public static SensorMessage safeOccurrence() {
 		return SensorMessage.builder()
-				.temprature(TEMPERATURE.problemFreeNumberGeneration())
+				.temperature(TEMPERATURE.problemFreeNumberGeneration())
 				.light(LIGHT.problemFreeNumberGeneration())
 				.oxygen(OXYGEN.problemFreeNumberGeneration())
 				.build();
 	}
 	
+	/**
+	 * This method creates a problematic message using the <i>brokenMetric</i>.
+	 * @param brokenMetric contains the value for which the message is supposed to report
+	 *        a problem.
+	 * @exception PhysicalProblemException is thrown if the brokenMetric contains false data. 
+	 * */
 	public static SensorMessage unsafeOccurrence(List<String> brokenMetric) {
-		if(brokenMetric == null || brokenMetric.size() > 1) {
+		if(isBrokenMetricInValid(brokenMetric)) {
 			throw new PhysicalProblemException("A physical problem has likely occured in the monitoring environment");
 		}
 		return SensorMessage.builder()
-				.temprature(safeOrNot(TEMPERATURE, brokenMetric))
+				.temperature(safeOrNot(TEMPERATURE, brokenMetric))
 				.light(safeOrNot(LIGHT, brokenMetric))
 				.oxygen(safeOrNot(OXYGEN, brokenMetric))
 				.build();
@@ -61,5 +72,18 @@ public enum EnvironmentEvents {
 	
 	private double getTenPercentOfNumber(double number) {
 		return (number / 100) * 10;
+	}
+	
+	private static boolean isBrokenMetricInValid(List<String> brokenMetric) {
+		return brokenMetric == null || 
+				brokenMetric.isEmpty() ||	
+				!containsAnyOfSensorMessageMetrics(brokenMetric)||
+				brokenMetric.size() > 1 ; // might be removed later
+	}
+	
+	private static boolean containsAnyOfSensorMessageMetrics(List<String> brokenMetric) {
+		return List.of(EnvironmentEvents.values()).stream()
+				.map(EnvironmentEvents::getEvent)
+		        .anyMatch(brokenMetric::contains);		
 	}
 }
