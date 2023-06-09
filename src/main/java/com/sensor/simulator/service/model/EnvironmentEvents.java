@@ -16,7 +16,7 @@ public enum EnvironmentEvents {
 	
 	TEMPERATURE(18.0, 28.0, "temperature"),
 	OXYGEN(300000.0, 400000.0, "oxygen"),
-	LIGHT(1000.0, 25000.0, "light");
+	LIGHT(10000.0, 25000.0, "light");
 	
 	static SecureRandom random = new SecureRandom();
 	double lowerBound;

@@ -8,4 +8,5 @@ sensor:
     metrics:
       - temperature
       - oxygen
-      - light    
+      - light 
+    environmental-risk-amount: 20   
