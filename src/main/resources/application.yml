@@ -9,4 +9,10 @@ sensor:
       - temperature
       - oxygen
       - light 
-    environmental-risk-amount: 20   
+    environmental-risk-amount: 20 
+    
+kafka:
+  channel:
+    configs:
+      bootstrap-server: localhost:9092  
+      topic-name: sensor-message-topic
