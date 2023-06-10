@@ -10,9 +10,25 @@ sensor:
       - oxygen
       - light 
     environmental-risk-amount: 20 
+    temperature-min: 18.0
+    temperature-max: 28.0
+    oxygen-min: 300000.0
+    oxygen-max: 400000.0
+    light-min: 10000.0
+    light-max: 25000.0
     
 kafka:
   channel:
     configs:
       bootstrap-server: localhost:9092  
       topic-name: sensor-message-topic
+      
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF
+      
+      
+      
+      

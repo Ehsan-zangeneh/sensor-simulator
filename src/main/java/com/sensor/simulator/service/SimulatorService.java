@@ -2,6 +2,7 @@ package com.sensor.simulator.service;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.springframework.stereotype.Component;
+
 import com.sensor.simulator.message.publisher.SensorMessagePublisher;
 import com.sensor.simulator.message.publisher.model.SensorPulishableMessage;
 
@@ -34,7 +35,6 @@ public class SimulatorService {
 	private void runGenerator() {
 		while(SENSORS_SWITCHED_ON.get()) {
 			var sm = eventGenerator.generate();
-			System.err.println("produced");
 			sensorMessagePublisher.publish(SensorPulishableMessage.builder()
 					.light(sm.getLight())
 					.temperature(sm.getTemperature())
